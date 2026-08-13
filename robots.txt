@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://qinghu-zhai.vercel.app/sitemap.xml
