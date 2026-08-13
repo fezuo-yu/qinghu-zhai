@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="清護齋｜以道為骨，以佛為心，以儒為行。" />
+  <title>清護齋｜以道為骨，以佛為心，以儒為行</title>
+  <style>
+    :root{
+      --ink:#0e0e0e;
+      --paper:#efe9df;
+      --paper-2:#d9d0c2;
+      --vermilion:#8e1f17;
+      --gold:#a78a58;
+      --muted:#9f998f;
+      --line:rgba(255,255,255,.12);
+      --card:rgba(255,255,255,.035);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(142,31,23,.08), transparent 28%),
+        radial-gradient(circle at 80% 0%, rgba(167,138,88,.07), transparent 24%),
+        linear-gradient(180deg,#0a0a0a 0%,#111 55%,#0a0a0a 100%);
+      color:var(--paper);
+      font-family:
+        "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+      line-height:1.8;
+      letter-spacing:.04em;
+    }
+
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+      background-size: 6px 6px;
+      mix-blend-mode:soft-light;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .wrap{width:min(1160px,92vw);margin:auto}
+
+    nav{
+      position:fixed; inset:0 0 auto 0;
+      z-index:50;
+      background:rgba(7,7,7,.72);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+
+    .nav-inner{
+      height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:800;
+      letter-spacing:.16em;
+    }
+
+    .seal{
+      width:34px;height:34px;
+      border:1px solid var(--vermilion);
+      color:#d96054;
+      display:grid;place-items:center;
+      font-family:serif;
+      font-size:14px;
+      transform:rotate(-3deg);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:26px;
+      color:#cfc7bc;
+      font-size:14px;
+    }
+
+    .nav-links a:hover{color:white}
+
+    .menu-btn{
+      display:none;
+      background:none;border:0;color:white;font-size:24px;cursor:pointer
+    }
+
+    header{
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      position:relative;
+      overflow:hidden;
+      padding-top:74px;
+    }
+
+    .smoke{
+      position:absolute;
+      width:520px;height:520px;
+      border-radius:50%;
+      filter:blur(60px);
+      background:radial-gradient(circle, rgba(255,255,255,.11), rgba(255,255,255,0) 62%);
+      top:8%; left:50%;
+      transform:translateX(-50%);
+      animation:drift 8s ease-in-out infinite alternate;
+      opacity:.32;
+    }
+
+    @keyframes drift{
+      from{transform:translateX(-55%) translateY(0) scale(.95)}
+      to{transform:translateX(-45%) translateY(-26px) scale(1.08)}
+    }
+
+    .hero{
+      text-align:center;
+      position:relative;
+      z-index:2;
+      padding:80px 0 60px;
+    }
+
+    .eyebrow{
+      color:var(--gold);
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.35em;
+      margin-bottom:18px;
+    }
+
+    h1{
+      margin:0;
+      font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;
+      font-size:clamp(58px,11vw,138px);
+      line-height:1;
+      letter-spacing:.18em;
+      font-weight:700;
+      text-indent:.18em;
+    }
+
+    .brush{
+      width:min(420px,72vw);
+      height:2px;
+      margin:28px auto 26px;
+      background:linear-gradient(90deg,transparent,var(--vermilion),transparent);
+      box-shadow:0 0 22px rgba(142,31,23,.45);
+    }
+
+    .hero-verse{
+      font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;
+      color:#cfc8bd;
+      font-size:clamp(16px,2vw,20px);
+      line-height:2.15;
+      margin:0 auto 16px;
+    }
+
+    .motto{
+      margin:18px 0 34px;
+      font-size:clamp(18px,2.5vw,26px);
+      font-weight:700;
+      letter-spacing:.14em;
+    }
+
+    .actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:13px 22px;
+      border:1px solid rgba(255,255,255,.16);
+      background:transparent;
+      color:white;
+      transition:.25s ease;
+      font-size:14px;
+    }
+
+    .btn.primary{
+      background:var(--vermilion);
+      border-color:var(--vermilion);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      border-color:var(--gold);
+    }
+
+    section{padding:100px 0}
+    .section-kicker{
+      color:var(--vermilion);
+      font-weight:800;
+      letter-spacing:.2em;
+      font-size:13px;
+    }
+    .section-title{
+      margin:10px 0 18px;
+      font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;
+      font-size:clamp(34px,5vw,56px);
+      letter-spacing:.08em;
+      line-height:1.25;
+    }
+    .lead{
+      color:#bdb5aa;
+      max-width:760px;
+      font-size:17px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:56px;
+      align-items:start;
+    }
+
+    .quote-card{
+      border-left:2px solid var(--vermilion);
+      padding:24px 26px;
+      background:var(--card);
+      color:#d7d0c5;
+      font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;
+      font-size:20px;
+    }
+
+    .services{
+      margin-top:42px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .card{
+      padding:28px 24px;
+      border:1px solid rgba(255,255,255,.09);
+      background:var(--card);
+      transition:.25s ease;
+      min-height:220px;
+    }
+    .card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(167,138,88,.5);
+      background:rgba(255,255,255,.055);
+    }
+    .num{
+      color:var(--gold);
+      font-size:12px;
+      letter-spacing:.2em;
+    }
+    .card h3{
+      margin:18px 0 8px;
+      font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;
+      font-size:24px;
+    }
+    .card p{color:#aaa298;font-size:14px;margin:0}
+
+    .divider{
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);
+    }
+
+    .divination{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:54px;
+      align-items:center;
+    }
+
+    .five{
+      display:grid;
+      grid-template-columns:repeat(3,90px);
+      grid-template-rows:repeat(3,90px);
+      place-content:center;
+      gap:8px;
+      min-height:360px;
+      position:relative;
+    }
+    .piece{
+      width:90px;height:90px;border-radius:50%;
+      display:grid;place-items:center;
+      border:2px solid #76654b;
+      background:radial-gradient(circle at 35% 30%,#e7dcc8,#b6a78f 72%,#8f7f67);
+      color:#1c1b18;
+      font-family:serif;
+      font-size:30px;
+      box-shadow:inset 0 0 0 5px rgba(70,52,31,.18),0 12px 24px rgba(0,0,0,.28);
+    }
+    .piece.red{color:#8e1f17}
+    .p1{grid-column:2;grid-row:1}
+    .p2{grid-column:1;grid-row:2}
+    .p3{grid-column:2;grid-row:2}
+    .p4{grid-column:3;grid-row:2}
+    .p5{grid-column:2;grid-row:3}
+
+    .journal{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:36px;
+    }
+
+    .post{
+      border-top:1px solid rgba(255,255,255,.14);
+      padding-top:18px;
+    }
+    .post small{color:var(--gold)}
+    .post h3{
+      font-size:20px;
+      font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;
+      margin:8px 0;
+    }
+    .post p{color:#9e978d;font-size:14px}
+
+    .contact{
+      text-align:center;
+      border:1px solid rgba(255,255,255,.1);
+      padding:64px 28px;
+      background:
+        linear-gradient(rgba(255,255,255,.02),rgba(255,255,255,.02)),
+        radial-gradient(circle at 50% 0%,rgba(142,31,23,.12),transparent 38%);
+    }
+
+    footer{
+      padding:30px 0 46px;
+      color:#777168;
+      font-size:13px;
+      text-align:center;
+    }
+
+    @media(max-width:900px){
+      .services{grid-template-columns:repeat(2,1fr)}
+      .grid-2,.divination{grid-template-columns:1fr}
+      .journal{grid-template-columns:1fr}
+      .nav-links{
+        display:none;
+        position:absolute;
+        top:74px; left:0; right:0;
+        background:#0b0b0b;
+        padding:20px 4vw 26px;
+        flex-direction:column;
+        border-bottom:1px solid rgba(255,255,255,.08);
+      }
+      .nav-links.open{display:flex}
+      .menu-btn{display:block}
+    }
+
+    @media(max-width:560px){
+      section{padding:76px 0}
+      .services{grid-template-columns:1fr}
+      h1{font-size:58px}
+      .five{
+        grid-template-columns:repeat(3,72px);
+        grid-template-rows:repeat(3,72px);
+      }
+      .piece{width:72px;height:72px;font-size:24px}
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">
+        <span class="seal">清護</span>
+        <span>清護齋</span>
+      </a>
+
+      <button class="menu-btn" aria-label="開啟選單" onclick="toggleMenu()">☰</button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#about">關於</a>
+        <a href="#services">服務</a>
+        <a href="#divination">象棋卜卦</a>
+        <a href="#journal">尋香誌</a>
+        <a href="#contact">聯絡</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top">
+    <div class="smoke"></div>
+    <div class="wrap hero">
+      <div class="eyebrow">QINGHU ZHAI · TAOIST PRACTICE</div>
+      <h1>清護齋</h1>
+      <div class="brush"></div>
+      <p class="hero-verse">
+        一炷香，敬天地。<br>
+        一道符，承法脈。<br>
+        一念正，方可行法。
+      </p>
+      <div class="motto">以道為骨，以佛為心，以儒為行。</div>
+      <div class="actions">
+        <a class="btn primary" href="#about">認識清護齋</a>
+        <a class="btn" href="#services">服務項目</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="wrap grid-2">
+        <div>
+          <div class="section-kicker">ABOUT</div>
+          <h2 class="section-title">敬天地，也敬人心。</h2>
+          <p class="lead">
+            清護齋以正信、正念、正行為核心，重視法脈傳承，也重視每一位來訪者真正面對的生活。
+            不以玄奇為賣點，不以恐懼為手段；能做的，盡心而為，不能保證的，坦然說明。
+          </p>
+        </div>
+        <div class="quote-card">
+          「需要錢的是人，不是神。<br>
+          敬神明，也要敬自己的選擇與責任。」
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-kicker">SERVICES</div>
+        <h2 class="section-title">服務項目</h2>
+        <p class="lead">先以清楚、簡潔的方式呈現核心服務，未來每一項都可以再做成獨立介紹頁。</p>
+
+        <div class="services">
+          <article class="card">
+            <div class="num">01</div>
+            <h3>符籙</h3>
+            <p>依需求提供相關符籙與使用說明，重視用途、規矩與實際需要。</p>
+          </article>
+          <article class="card">
+            <div class="num">02</div>
+            <h3>祭改・收驚</h3>
+            <p>依個別狀況評估是否適合進行，不以恐嚇或誇張說法增加焦慮。</p>
+          </article>
+          <article class="card">
+            <div class="num">03</div>
+            <h3>點燈祈福</h3>
+            <p>以祝願、安定與心念為核心，讓祈福回到敬意與自我實踐。</p>
+          </article>
+          <article class="card">
+            <div class="num">04</div>
+            <h3>象棋卜卦</h3>
+            <p>以五子架構觀察現況、過去、未來、天時與地利，提供思考方向。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="divination">
+      <div class="wrap divination">
+        <div class="five" aria-label="象棋卜卦五子示意">
+          <div class="piece red p1">炮</div>
+          <div class="piece p2">馬</div>
+          <div class="piece p3">將</div>
+          <div class="piece red p4">仕</div>
+          <div class="piece p5">卒</div>
+        </div>
+
+        <div>
+          <div class="section-kicker">DIVINATION</div>
+          <h2 class="section-title">五子成局，一問見勢。</h2>
+          <p class="lead">
+            象棋卜卦不是單純看「吉或凶」，而是透過不同棋子的角色、位置與彼此關係，
+            看事情目前卡在哪裡、力量從何而來、接下來可能往哪裡走。
+          </p>
+          <p class="lead">
+            起卦前亦有其規矩：問題需明確，心緒應穩定；精神不濟、酒醉、戲問或短時間反覆問同一件事時，不宜起卦。
+          </p>
+          <a class="btn" href="#contact">了解問卦方式</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="journal">
+      <div class="wrap">
+        <div class="section-kicker">JOURNAL</div>
+        <h2 class="section-title">尋香誌</h2>
+        <p class="lead">未來可以放跑廟、民俗、神祇文化、修持心得與尋香紀錄，讓網站慢慢長成自己的內容庫。</p>
+
+        <div class="journal">
+          <article class="post">
+            <small>民俗文化</small>
+            <h3>香火不是答案，而是一種提醒</h3>
+            <p>從一炷香開始，看信仰如何落在日常裡。</p>
+          </article>
+          <article class="post">
+            <small>尋香紀錄</small>
+            <h3>廟埕之外，真正留下的是什麼？</h3>
+            <p>鏡頭記錄神明，也記錄人與土地之間的故事。</p>
+          </article>
+          <article class="post">
+            <small>清護隨筆</small>
+            <h3>行法之前，先正自己的心</h3>
+            <p>術可以學，規矩可以記，真正難的是知道自己為什麼而做。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact">
+          <div class="section-kicker">CONTACT</div>
+          <h2 class="section-title">有事，先說清楚。</h2>
+          <p class="lead" style="margin:0 auto 26px">
+            問卦、請符、祈福或其他相關需求，可先透過聯絡方式說明事情背景與需求，再確認是否適合承接。
+          </p>
+          <a class="btn primary" href="https://www.threads.net/@qinghu_zhai" target="_blank" rel="noopener">Threads｜清護齋</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      © 2026 清護齋 Qinghu Zhai · 本頁為網站第一版原型
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu(){
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+    document.querySelectorAll('#navLinks a').forEach(a=>{
+      a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+    });
+  </script>
+</body>
+</html>
